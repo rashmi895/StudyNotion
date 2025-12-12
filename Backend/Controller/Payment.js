@@ -17,7 +17,49 @@ if(!course_id){
    })
 };
 
-// 
+// find if course exists
+let course;
+    try {
+        course = await Course.findById(course_id);
+        if (!course) {
+            return res.json({
+                success: false,
+                message: "Could not find the course",
+            });
+        }
+    } catch (error) {
+        return res.json({
+            success: false,
+            message: "Error while finding course",
+        });
+    }
+// check if the user has already purchased the course
+const uid = new mongoose.Types.ObjectId(userId);
+if (course.studentsEnrolled.includes(uid)) {
+    return res.status(200).json({
+        success: false,
+        message: "Student is already enrolled",
+    });
+}
+
+} catch (error) {
+    console.error(error);
+    return res.status(500).json({
+        success: false,
+        message: error.message,
+    });
+}
+
+// oder create 
+const options = {
+    amount: amount * 100,
+    currency,
+    receipt: Math.random(Date.now()).toString(),
+    notes: {
+        courseId: course_id,
+        userId,
+    },
+};
   }
   catch(err){
     
