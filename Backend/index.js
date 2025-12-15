@@ -8,8 +8,10 @@ const PaymentRoutes=require("./Router/Payment");
 const CourseRoutes=require("./Router/Course");
 
 // OTHER MIDDLEWARES OR UTILITIES
-const database=reuire("./config/database");
-const cookieParser=require("cookie-parse");
+const database=require("./config/database");
+
+const cookieParser = require("cookie-parser");
+
 const cors=require("cors");
 const{cloudinaryConnect}=require("./config/cloudinary");
 const fileUpload=require("express-fileupload");
