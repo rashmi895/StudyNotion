@@ -5,56 +5,69 @@ const OTP = require("../Models/Otp");            // OTP model
 const User = require("../Models/User");          // User model
 const Profile = require("../Models/Profile");    // Profile model
 const otpGenerator = require("otp-generator");   // For OTP creation
-const nodemailer = require("nodemailer");    
-exports.sendotp=async(req,res)=>{
-try{
-  // fetch the email id from database
-const {email}=req.body;
-console.log("otp send ",email);
+const nodemailer = require("nodemailer"); 
+const mailsender=require("../../Backend/Utils/mailsender");
+exports.sendotp = async (req, res) => {
+  try {
+    const { email } = req.body;
+    console.log("OTP request for:", email);
 
-// check if user already exists
-const existingUser=await user.findOne({email});
-if(existingUser){
-  return res.json(400).json({
-success:true,
-message:"user already exists "
-  });
-}
-var otpGenerator = require('otp-generator');
-
-otpGenerator.generate(4, { upperCase: false, specialChars: false });
-  let result = await otp.findOne({otp:otp});
-
-        while (result) {
-            otp = otpGenerator.generate(6,{
-                upperCaseAlphabets:false,
-                lowerCaseAlphabets:false,
-                specialChars:false,
-            });
-            result = otp.findOne({otp:otp});
-        }
-        console.log("OTP generated", otp);
-
-        const createdOtp = await otp.create({
-            email,
-            otp
-        })
-
-        return res.status(200).json({
-            success:true,
-            message: "OTP created!",
-            createdOtp
-        })
-
-}
-catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            success:false,
-            message:error.message,
-        })
+    // 1. Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: "User already exists",
+      });
     }
+
+    // 2. Generate OTP
+    let otp = otpGenerator.generate(6, {
+      upperCaseAlphabets: false,
+      lowerCaseAlphabets: false,
+      specialChars: false,
+    });
+
+    // 3. Ensure OTP uniqueness
+    let otpExists = await OTP.findOne({ otp });
+    while (otpExists) {
+      otp = otpGenerator.generate(6, {
+        upperCaseAlphabets: false,
+        lowerCaseAlphabets: false,
+        specialChars: false,
+      });
+      otpExists = await OTP.findOne({ otp });
+    }
+
+    console.log("OTP generated:", otp);
+
+    // 4. Save OTP in DB
+    await OTP.create({
+      email,
+      otp,
+    });
+
+    // 5. Send OTP email
+    await mailsender(
+      email,
+      "OTP Verification",
+      `<h2>Your OTP is <b>${otp}</b></h2><p>This OTP is valid for 5 minutes.</p>`
+    );
+
+    // 6. Send response
+    return res.status(200).json({
+      success: true,
+      message: "OTP sent successfully",
+    });
+
+  } catch (error) {
+    console.error("SEND OTP ERROR:", error);
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
+};
   
 
   // signup funtion 
@@ -94,7 +107,7 @@ exports.signup = async (req, res) => {
     }
 
     // 5️⃣ Get the most recent OTP for this email
-    const recentOtp = await OTP.findOne({ email }).sort({ createdAt: -1 });
+    const recentOtp = await otp.findOne({ email }).sort({ createdAt: -1 });
     if (!recentOtp) {
       return res.status(400).json({
         success: false,

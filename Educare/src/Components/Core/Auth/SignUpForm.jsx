@@ -1,10 +1,11 @@
 import { useState } from "react"
+import React from 'react'
 import { toast } from "react-hot-toast"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-import { sendOtp } from "../../../services/operations/authAPI"
+import { sendOtp } from "../../../Services/operations/authAPI.js"
 import { setSignupData } from "../../../slices/authSlice"
 import { ACCOUNT_TYPE } from "../../../utils/constrains"
 import Tab from "../../common/Tab"
@@ -89,8 +90,8 @@ function SignupForm() {
       <form onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-4">
         <div className="flex gap-x-4">
           <label>
-            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-              First Name <sup className="text-pink-200">*</sup>
+            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-amber-50">
+              First Name <sup className="text-amber-50">*</sup>
             </p>
             <input
               required
@@ -102,11 +103,11 @@ function SignupForm() {
               style={{
                 boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
               }}
-              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
+              className="w-full rounded-[0.5rem] bg-amber-50 p-[12px] text-richblack-5"
             />
           </label>
           <label>
-            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-amber-50">
               Last Name <sup className="text-pink-200">*</sup>
             </p>
             <input
@@ -119,12 +120,12 @@ function SignupForm() {
               style={{
                 boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
               }}
-              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
+              className="w-full rounded-[0.5rem] bg-amber-50 p-[12px] text-richblack-5"
             />
           </label>
         </div>
         <label className="w-full">
-          <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+          <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-amber-50">
             Email Address <sup className="text-pink-200">*</sup>
           </p>
           <input
@@ -137,12 +138,12 @@ function SignupForm() {
             style={{
               boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
             }}
-            className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
+            className="w-full rounded-[0.5rem] bg-amber-50 p-[12px] text-richblack-5"
           />
         </label>
         <div className="flex gap-x-4">
           <label className="relative">
-            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-amber-50">
               Create Password <sup className="text-pink-200">*</sup>
             </p>
             <input
@@ -155,7 +156,7 @@ function SignupForm() {
               style={{
                 boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
               }}
-              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] pr-10 text-richblack-5"
+              className="w-full rounded-[0.5rem] bg-amber-50 p-[12px] pr-10 text-richblack-5"
             />
             <span
               onClick={() => setShowPassword((prev) => !prev)}
@@ -169,7 +170,7 @@ function SignupForm() {
             </span>
           </label>
           <label className="relative">
-            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-amber-50">
               Confirm Password <sup className="text-pink-200">*</sup>
             </p>
             <input
@@ -182,7 +183,7 @@ function SignupForm() {
               style={{
                 boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
               }}
-              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] pr-10 text-richblack-5"
+              className="w-full rounded-[0.5rem] bg-amber-50 p-[12px] pr-10 text-richblack-5"
             />
             <span
               onClick={() => setShowConfirmPassword((prev) => !prev)}

@@ -1,12 +1,13 @@
-const BASE_URL = process.env.REACT_APP_BASE_URL
+
+const BASE_URL = import.meta.env.VITE_BASE_URL
 
 // AUTH ENDPOINTS
 export const endpoints = {
-  SENDOTP_API: BASE_URL + "sendotp",
-  SIGNUP_API: BASE_URL + "signup",
-  LOGIN_API: BASE_URL + "login",
-  RESETPASSTOKEN_API: BASE_URL + "/auth/reset-password-token",
-  RESETPASSWORD_API: BASE_URL + "/auth/reset-password",
+  SENDOTP_API: "/api/v1/User/sendotp",
+  SIGNUP_API:  "/api/v1/User/signup",
+  LOGIN_API:  "/api/v1/User/login",
+  RESETPASSTOKEN_API:  "/auth/reset-password-token",
+  RESETPASSWORD_API: "/auth/reset-password",
 }
 
 // PROFILE ENDPOINTS

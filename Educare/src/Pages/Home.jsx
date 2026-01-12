@@ -10,9 +10,7 @@ import Navbar from '../Components/Common/Navbar.jsx';
 const Home = () => {
   return (
     <div className='flex flex-col items-center'>
-      <div>
-        <Navbar></Navbar>
-      </div>
+      
       {/* Section 1 */}
       <div className='relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center 
       text-amber-400 justify-between'>
