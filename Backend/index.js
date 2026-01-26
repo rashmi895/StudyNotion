@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 
+
 // ALL ROUTES IMPORT
 const UserRoutes=require("./Router/User");
 const ProfileRoutes=require("./Router/Profile");
@@ -41,7 +42,7 @@ database.connectDB();
 //
 app.use(
 	fileUpload({
-		useTempFiles:true,
+		useTempFiles:true, 
 		tempFileDir:"/tmp",
 	})
 );

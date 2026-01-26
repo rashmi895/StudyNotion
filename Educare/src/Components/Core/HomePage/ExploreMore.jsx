@@ -10,6 +10,8 @@ const tabsName = [
     "Skills paths",
     "Career paths",
 ];
+
+
 const ExploreMore = () => {
     const [currentTab, setCurrentTab] = useState(HomePageExplore[0].tag)
     const [courses, setCourses] = useState(HomePageExplore[0].courses);

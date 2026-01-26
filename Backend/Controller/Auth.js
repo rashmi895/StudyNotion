@@ -6,6 +6,7 @@ const User = require("../Models/User");          // User model
 const Profile = require("../Models/Profile");    // Profile model
 const otpGenerator = require("otp-generator");   // For OTP creation
 const nodemailer = require("nodemailer"); 
+const jwt = require('jsonwebtoken');
 const mailsender=require("../../Backend/Utils/mailsender");
 exports.sendotp = async (req, res) => {
   try {
@@ -107,7 +108,7 @@ exports.signup = async (req, res) => {
     }
 
     // 5️⃣ Get the most recent OTP for this email
-    const recentOtp = await otp.findOne({ email }).sort({ createdAt: -1 });
+    const recentOtp = await OTP.findOne({ email }).sort({ createdAt: -1 });
     if (!recentOtp) {
       return res.status(400).json({
         success: false,

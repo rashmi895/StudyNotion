@@ -152,7 +152,7 @@ export function getPasswordResetToken(email, setEmailSent){
         throw new Error(response.data.message)
       }
     
-      toast.success("Mail Sent successful")
+      toast.success("Mail Sent successfully");
       setEmailSent(true);
     } catch (error) {
       console.log("RESETPASSTOKEN_API ERROR............", error)

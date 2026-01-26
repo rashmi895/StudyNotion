@@ -20,6 +20,17 @@ router.post("/changePassword",auth ,changePassword);
 
 // ROUTES FOR RESET PASSWORD
 
-router.post("/resetPassword",resetPassword,resetPasswordToken);
+
+
+router.post(
+  "/resetPassword-token",
+  resetPasswordToken
+);
+
+router.post(
+  "/resetPassword",
+  resetPassword
+);
+
 
 module.exports=router;

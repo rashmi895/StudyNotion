@@ -5,6 +5,10 @@ import SignUp from './Pages/signUp';
 import Login from './Pages/Login';
 import Navbar from './Components/Common/Navbar';
 import Home from "./Pages/Home";
+import AboutUs from './Pages/AboutUs';
+import VerifyEmail from './Pages/verifyEmail';
+import ForgotPassword from './Pages/forgotPassword';
+import UpdatePassword from './Pages/UpdatePassword';
 const App = () => {
   return (
     <div >
@@ -22,6 +26,31 @@ const App = () => {
                 <Login/>
               </OpenRoute>
             } />  
+
+              <Route path="verify-email" element={
+              <OpenRoute>
+                <VerifyEmail/>
+              </OpenRoute>
+            } /> 
+
+             <Route path="forgot-password" element={
+              <OpenRoute>
+                <ForgotPassword/>
+              </OpenRoute>
+            } /> 
+
+             <Route path="update-password" element={
+              <OpenRoute>
+                <UpdatePassword/>
+              </OpenRoute>
+            } /> 
+
+ <Route path="about-us" element={
+              <OpenRoute>
+                <AboutUs/>
+              </OpenRoute>
+            } /> 
+
       </Routes>
       </div>
     </div>
