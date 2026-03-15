@@ -3,4 +3,4 @@ const router=express.Router();
 
 const {capturePayments,verifyPayments}=require("../Controller/Payment");
 
-module.exports = router;   
+module.exports = router; 

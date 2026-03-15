@@ -9,7 +9,7 @@ const rootReducer=combineReducers({
 
     auth:authReducers,
     cart:cartReducers,
-  user:profileReduces,
+  profile:profileReduces,
 });
 
 export default rootReducer;

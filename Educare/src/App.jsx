@@ -9,6 +9,11 @@ import AboutUs from './Pages/AboutUs';
 import VerifyEmail from './Pages/verifyEmail';
 import ForgotPassword from './Pages/forgotPassword';
 import UpdatePassword from './Pages/UpdatePassword';
+import PrivateRoute from './Components/Core/Auth/PrivateRoutes';
+import Dashboard from './Pages/Dashboard';
+import MyProfile from './Components/Core/Dashboard/MyProfile';
+import Settings from './Components/Core/Dashboard/Settings';
+import EnrolledCourses from './Components/Core/Dashboard/EnrolledCourses';
 const App = () => {
   return (
     <div >
@@ -50,8 +55,26 @@ const App = () => {
                 <AboutUs/>
               </OpenRoute>
             } /> 
+{/* // dashboard Routes */}
+ {/* Protected Dashboard Route */}
+  <Route
+    path="/dashboard"
+    element={
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    }
+  >
+    {/* Child routes rendered inside <Outlet /> */}
+    <Route path="my-profile" element={<MyProfile />} />
+      <Route path="settings" element={<Settings />} />
+      {/* <Route path="enrolled-courses" element={<EnrolledCourses/>}/> */}
+      <Route path="enrolled-courses" element={<EnrolledCourses />} />
 
-      </Routes>
+  </Route>
+
+</Routes>
+
       </div>
     </div>
   )

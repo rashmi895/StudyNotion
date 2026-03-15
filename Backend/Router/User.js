@@ -19,9 +19,6 @@ router.post("/sendotp",sendotp);
 router.post("/changePassword",auth ,changePassword);
 
 // ROUTES FOR RESET PASSWORD
-
-
-
 router.post(
   "/resetPassword-token",
   resetPasswordToken

@@ -11,8 +11,6 @@ const sectionSchema = new mongoose.Schema({
             ref:"SubSection",    
         }
     ],
-
-
 });
 
 module.exports = mongoose.model("Section", sectionSchema);

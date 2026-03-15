@@ -20,6 +20,10 @@ export function sendOtp(email, navigate){
      dispatch(setLoading(true));
 
      try {
+      if (!email) {
+        throw new Error("Email is required")
+      }
+
       const response = await apiConnector("POST", SENDOTP_API, {
         email,
         checkUserPresent: true,
@@ -34,10 +38,12 @@ export function sendOtp(email, navigate){
       }
 
       toast.success("OTP Sent Successfully")
-      navigate("/verify-email")
+      if (navigate) {
+        navigate("/verify-email")
+      }
      } catch (error) {
       console.log("SENDOTP API ERROR............", error)
-      toast.error("Could Not Send OTP")
+      toast.error(error.response?.data?.message || error.message || "Could Not Send OTP")
      }
      dispatch(setLoading(false));
      toast.dismiss(toastId);
@@ -75,13 +81,13 @@ export function signUp(
 
       if(!response.data.success){
         throw new Error(response.data.message)
-      }
+     }
 
       toast.success("Signup successful")
       navigate("/login")
      } catch (error) {
       console.log("SIGNUP_API ERROR............", error)
-      toast.error("Could Not Sign up user")
+      toast.error(error.response?.data?.message || error.message || "Could Not Sign up user")
      }
      dispatch(setLoading(false));
      toast.dismiss(toastId);
@@ -109,12 +115,12 @@ export function login(email, password, navigate){
 
       toast.success("Login Successfully")
       dispatch(setToken(response.data.token));
-      const userImage = response.data?.existingUser?.image
-        ? response.data.existingUser.image
-        : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.existingUser.firstName} ${response.data.existingUser.lastName}`
-      dispatch(setUser({ ...response.data.existingUser, image: userImage }))
+      const userImage = response.data?.user?.image
+        ? response.data.user.image
+        : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
+      dispatch(setUser({ ...response.data.user, image: userImage }))
       localStorage.setItem("token", JSON.stringify(response.data.token))
-      localStorage.setItem("user", JSON.stringify(response.data.existingUser))
+      localStorage.setItem("user", JSON.stringify(response.data.user))
       navigate("/dashboard/my-profile")
      } catch (error) {
       console.log("LOGIN API ERROR............", error)
@@ -129,7 +135,7 @@ export function logout(navigate) {
   return (dispatch)=>{
     dispatch(setToken(null));
     dispatch(setUser(null));
-    dispatch(resetCart());
+    // dispatch(resetCart());
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     toast.success("Logged Out")

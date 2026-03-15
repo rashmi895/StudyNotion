@@ -71,11 +71,7 @@ exports.sendotp = async (req, res) => {
 };
   
 
-  // signup funtion 
-    // For sending email
-
-// ------------------------------
-// 📩 SIGNUP CONTROLLER
+ 
 // ------------------------------
 exports.signup = async (req, res) => {
   try {
@@ -150,7 +146,7 @@ exports.signup = async (req, res) => {
       image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`, // Avatar
     });
 
-    console.log("✅ User created successfully:", newUser.email);
+    console.log(" User created successfully:", newUser.email);
 
     // 1️⃣1️⃣ Send success response
     return res.status(201).json({

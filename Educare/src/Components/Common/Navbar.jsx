@@ -4,11 +4,15 @@ import { Link, matchPath, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import ProfileDropDown from "../Core/Auth/ProfileDropDown"
 import websiteLogo from '../../assets/Logos/websiteLogo.png'
+import { AiOutlineShoppingCart } from "react-icons/ai";
 const Navbar = () => {
 // import all the slices 
 const {token} = useSelector((state)=>state.auth);
 const {cart} = useSelector((state)=>state.cart);
-const {user} = useSelector((state)=>state.user);
+const {user} = useSelector((state)=>state.profile);
+
+  const {totalItems} = useSelector((state)=> state.cart);
+
   // match route location logic 
   const location = useLocation();
   const matchRoute = (route) => {

@@ -1,5 +1,4 @@
 const mongoose =  require('mongoose');
-
 const courseSchema = new mongoose.Schema({
     courseName:{
         type:String, 
@@ -54,6 +53,6 @@ const courseSchema = new mongoose.Schema({
 		default:Date.now
 	},
 })
+module.exports = mongoose.models.Course || mongoose.model("Course", courseSchema);
 
-// module.exports = mongoose.model("Course", courseSchema);
-module.exports = mongoose.models.User || mongoose.model("Course", courseSchema);
+//  localhost:4000/api/v1/Profile/updateDisplayPicture

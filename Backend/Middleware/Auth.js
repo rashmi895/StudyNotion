@@ -1,36 +1,39 @@
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
-
-exports.auth = async (req,res, next) => {
-
+exports.auth = async (req, res, next) => {
     try {
-        
-        const token = req.body.token || req.cookies.token || req.get("Authorization")?.replace("Bearer ", "");
-        
-        if(!token) {
+        const authHeader = req.get("Authorization");
+        const token =
+            req.body?.token ||
+            req.cookies?.token ||
+            authHeader?.replace(/^Bearer\s+/i, "");
+
+        if (!token) {
             return res.status(401).json({
-                success:false,
-                message:'TOken is missing',
+                success: false,
+                message: "Token is missing",
             });
         }
+
         try {
-            const payload = jwt.verify(token,process.env.JWT_SECRET);
+            const payload = jwt.verify(token, process.env.JWT_SECRET);
             req.user = payload;
         } catch (error) {
             return res.status(401).json({
-                success:false,
-                message:"Invaild token."
-            })
-        } 
+                success: false,
+                message: "Invalid token.",
+            });
+        }
+
         next();
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return res.status(401).json({
-            success:false,
-            message:"Error in validating token"
-        })
+            success: false,
+            message: "Error in validating token",
+        });
     }
-}
+};
 
 exports.isStudent = async(req,res,next) => {
     try{

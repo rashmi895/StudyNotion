@@ -1,6 +1,6 @@
 const User = require("../Models/User");
 const Profile = require("../Models/Profile");
-// const { uploadImageToCloudinary } = require("../utils/imageUploader");
+const { uploadImageToCloudinary } = require("../utils/imageUploader");
 // const CourseProgress = require("../models/CourseProgress");
 const Course = require("../Models/Course");
 // const { convertSecondsToDuration } = require("../utils/secToDuration");
@@ -98,3 +98,79 @@ exports.getAllUserDetails = async (req, res) => {
         });
     }
 }
+
+// exports.updateDisplayPicture = async (req, res) => {
+//     try {
+//       const displayPicture = req.files?.displayPicture   //get the image from the request
+//       if (!displayPicture) {
+//         return res.status(400).json({
+//           success: false,
+//           message: "Display picture file is required",
+//         })
+//       }
+
+//       const userId = req.user.id  //get user ID from the request
+//       const image = await uploadImageToCloudinary(  // uploading the image to cloudinary and getting the url
+//         displayPicture,
+//         process.env.FOLDER_NAME,
+//         1000,
+//         1000
+//       )
+//       console.log(image)
+//       const updatedProfile = await User.findByIdAndUpdate(
+//         { _id: userId },
+//         { image: image.secure_url },
+//         { new: true }
+//       )
+//       res.send({
+//         success: true,
+//         message: `Image Updated successfully`,
+//         data: updatedProfile,
+//       })
+//     } catch (error) {
+//       console.error(error)
+//       return res.status(500).json({
+//         success: false,
+//         message: "Image upload failed",
+//         error: error.message,
+//       })
+//     }
+// };
+
+exports.updateDisplayPicture = async (req, res) => {
+    try {
+      const displayPicture = req.files?.displayPicture   //get the image from the request
+      if (!displayPicture) {
+        return res.status(400).json({
+          success: false,
+          message: "Display picture file is required",
+        })
+      }
+
+      const userId = req.user.id  //get user ID from the request
+      const image = await uploadImageToCloudinary(  // uploading the image to cloudinary and getting the url
+        displayPicture,
+        process.env.FOLDER_NAME,
+        1000,
+        1000
+      )
+      console.log(image)
+      const updatedProfile = await User.findByIdAndUpdate(
+        { _id: userId },
+        { image: image.secure_url },
+        { new: true }
+      )
+      res.send({
+        success: true,
+        message: `Image Updated successfully`,
+        data: updatedProfile,
+      })
+    } catch (error) {
+      console.error(error)
+      return res.status(500).json({
+        success: false,
+        message: "Image upload failed",
+        error: error.message,
+      })
+    }
+};

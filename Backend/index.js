@@ -1,5 +1,14 @@
 const express = require("express");
+const os = require("os");
 const app = express();
+
+// OTHER MIDDLEWARES OR UTILITIES
+const database=require("./config/database");
+const cookieParser= require("cookie-parser");
+const cors=require("cors");
+const{cloudinaryConnect}=require("./config/cloudinary");
+const fileUpload=require("express-fileupload");
+const dotenv=require("dotenv");
 
 
 // ALL ROUTES IMPORT
@@ -7,18 +16,6 @@ const UserRoutes=require("./Router/User");
 const ProfileRoutes=require("./Router/Profile");
 const PaymentRoutes=require("./Router/Payment");
 const CourseRoutes=require("./Router/Course");
-
-// OTHER MIDDLEWARES OR UTILITIES
-const database=require("./config/database");
-
-
-const cookieParser= require("cookie-parser");
-
-const cors=require("cors");
-const{cloudinaryConnect}=require("./config/cloudinary");
-const fileUpload=require("express-fileupload");
-const dotenv=require("dotenv");
-
 
 dotenv.config();
 const PORT = process.env.PORT || 4000;
@@ -43,7 +40,7 @@ database.connectDB();
 app.use(
 	fileUpload({
 		useTempFiles:true, 
-		tempFileDir:"/tmp",
+		tempFileDir: os.tmpdir(),
 	})
 );
 
@@ -52,6 +49,7 @@ app.use("/api/v1/User",UserRoutes);
 app.use("/api/v1/Profile",ProfileRoutes);
 app.use("/api/v1/Payment",PaymentRoutes);
 app.use("/api/v1/Course",CourseRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

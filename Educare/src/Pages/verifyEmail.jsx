@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import { RxCountdownTimer } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 import { sendOtp, signUp } from "../Services/operations/authAPI";
 import { useNavigate } from "react-router-dom";
 
@@ -16,10 +17,21 @@ const VerifyEmail = () => {
     
     useEffect(() => {
       if(!signupData) navigate('/signup')
-    }, [])
+    }, [signupData, navigate])
     
     const handleVerifyAndSignup = (e) => {
         e.preventDefault();
+        if (!signupData) {
+          toast.error("Please fill in signup details first")
+          navigate("/signup")
+          return
+        }
+
+        if (otp.length !== 6) {
+          toast.error("Please enter the 6-digit OTP")
+          return
+        }
+
         const {
             accountType,
             firstName,
@@ -86,7 +98,7 @@ const VerifyEmail = () => {
             </Link>
             <button
               className="flex items-center text-blue-100 gap-x-2"
-              onClick={() => dispatch(sendOtp(signupData.email))}
+              onClick={() => dispatch(sendOtp(signupData?.email))}
             >
               <RxCountdownTimer />
               Resend it
