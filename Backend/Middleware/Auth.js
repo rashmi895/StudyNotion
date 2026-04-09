@@ -33,7 +33,7 @@ exports.auth = async (req, res, next) => {
             message: "Error in validating token",
         });
     }
-};
+};  
 
 exports.isStudent = async(req,res,next) => {
     try{

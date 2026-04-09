@@ -1,4 +1,4 @@
-const RatingAndReview = require("../models/RatingAndReview");
+const RatingAndReview = require("../Models/RatingAndReview");
 const Course = require("../Models/Course");
 const mongoose = require("mongoose");
 

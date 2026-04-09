@@ -1,5 +1,6 @@
 const express = require("express");
 const os = require("os");
+require("dotenv").config({ quiet: true });
 const app = express();
 
 // OTHER MIDDLEWARES OR UTILITIES
@@ -8,7 +9,6 @@ const cookieParser= require("cookie-parser");
 const cors=require("cors");
 const{cloudinaryConnect}=require("./config/cloudinary");
 const fileUpload=require("express-fileupload");
-const dotenv=require("dotenv");
 
 
 // ALL ROUTES IMPORT
@@ -17,7 +17,6 @@ const ProfileRoutes=require("./Router/Profile");
 const PaymentRoutes=require("./Router/Payment");
 const CourseRoutes=require("./Router/Course");
 
-dotenv.config();
 const PORT = process.env.PORT || 4000;
 
 app.use(express.json());

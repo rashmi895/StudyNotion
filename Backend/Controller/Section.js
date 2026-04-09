@@ -1,26 +1,32 @@
-const Category=require("../Models/Category");
-const Course=require("../Models/Course");
-exports.createSection=async(req,res)=>{
-  try{
-    // data fech from frontend 
-const {name,course}=req.body;
-// data validation 
-  if(!name || !course){
-    return res.status(400).json({
-      success:false,
-      message:"fill all the details"
-    })
-// section create
-        const newSection = await Section.create({sectionName});
-    // section id push in course id 
-    const updatedCourse= await course.findByIdandUpdate(courseId,{
-      $push:{
-courseContent:newSection._id
-      }
-    },{new:true
-    });
+const Section = require('../models/Section');
+const Course = require('../models/Course');
+const SubSection = require('../models/Sub-Setion');
+exports.createSection = async (req,res) => {
+    try {
+        
+        const {courseId, sectionName} = req.body;
 
-      return res.status(200).json({
+        if(!courseId || !sectionName) {
+            return res.status(400).json({
+                success:false,
+                message:'All fields are required',
+            });
+        }
+
+        const newSection = await Section.create({sectionName});
+
+        const updatedCourse = await Course.findByIdAndUpdate(courseId, {
+                                                                          $push: {
+                                                                            courseContent:newSection._id
+                                                                          }  
+                                                                        }, {new:true})
+                                                                        .populate({
+                                                                            path:"courseContent",
+                                                                            populate: {
+                                                                                path:"subSection"
+                                                                            }});
+
+        return res.status(200).json({
             success:true,
             message:'Section created successfully',
             newSection,
@@ -33,35 +39,34 @@ courseContent:newSection._id
             message:'Failed to create Section',
             error: error.message,
         })
-  }
-  }
- 
-  // UPDATE THE SECTION 
-  exports.updateSection=async(req,res)=>{
-    try{
-const {courseid,sectionId,sectionName}=req.body;
-if(!sectionName || !sectionId){
-  res.status(400).json({
-    status:false,
-    message:"fill all the details "
-  })
+    }
 }
 
-// cre
-const updatedSection=await Section.findByIdandUpdate(sectionId,{sectionName},{new:true});
-const updatedCourse= await Course.findById(courseid)
-.populate({
-    path:"courseContent",
+exports.updateSection = async (req,res) => {
+    try {
+        
+        const {sectionId, sectionName, courseId} = req.body;
+
+        if (!sectionId || !sectionName) {
+            return res.status(400).json({
+                success:false,
+                message:'All fields are required',
+            });
+        }
+
+        const updatedSection = await Section.findByIdAndUpdate(sectionId, {sectionName}, {new:true});
+        const updatedCourse = await Course.findById(courseId)
+          .populate({
+              path:"courseContent",
               populate: {
                   path:"subSection"
-}});
-  return res.status(200).json({
+              }});
+        return res.status(200).json({
             success:true,
             message:'Section updated successfully',
             updatedCourse
         })   
-    }
-    catch (error) {
+    } catch (error) {
         console.error(error);
         return res.status(500).json({
             success:false,
@@ -70,10 +75,8 @@ const updatedCourse= await Course.findById(courseid)
         })
     }
 }
-  }
 
-  // DELETE SECTION 
-  exports.deleteSection = async (req,res) => {
+exports.deleteSection = async (req,res) => {
     try {
         
         const {sectionId, courseId} = req.body;

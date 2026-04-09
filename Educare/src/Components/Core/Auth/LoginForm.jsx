@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import React from "react"
 import {login} from "../../../Services/operations/authAPI"
-import { ACCOUNT_TYPE } from "../../../utils/constrains"
+import { ACCOUNT_TYPE } from "../../../utils/constants"
 import Tab from "../../common/Tab"
 function LoginForm() {
   const navigate = useNavigate()

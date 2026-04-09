@@ -1,5 +1,6 @@
 const Category = require('../Models/Category');
 const Course = require('../Models/Course');
+require("../Models/RatingAndReview");
 function getRandomInt(max) {
     return Math.floor(Math.random() * max)
   }
@@ -59,7 +60,15 @@ exports.showAllCategories = async (req,res) => {
 
 exports.categoryPageDetails = async (req,res) => {
     try {
-        const { categoryId } = req.body
+        const categoryId = req.body?.categoryId || req.params?.id
+
+      if (!categoryId) {
+        return res.status(400).json({
+          success: false,
+          message: "Category id is required",
+        })
+      }
+
       console.log("PRINTING CATEGORY ID: ", categoryId);
       // Get courses for the specified category
       const selectedCourses = await Category.findById(categoryId)
@@ -70,7 +79,7 @@ exports.categoryPageDetails = async (req,res) => {
         })
         .exec()
   
-      //console.log("SELECTED COURSE", selectedCourses)
+      console.log("SELECTED COURSE", selectedCourses)
       // Handle the case when the category is not found
       if (!selectedCourses) {
         console.log("Category not found.")
@@ -93,26 +102,22 @@ exports.categoryPageDetails = async (req,res) => {
         course: { $not: { $size: 0 } }
       })
       console.log("categoriesExceptSelected", categoriesExceptSelected)
-      let differentCourses = await Category.findOne(
-        categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
-          ._id
-      )
-        .populate({
-          path: "course",
-          match: { status: "Published" },
-          populate: "ratingAndReviews",
-        })
-        .exec()
+      let differentCourses = null
+
+      if (categoriesExceptSelected.length > 0) {
+        differentCourses = await Category.findOne(
+          categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
+            ._id
+        )
+          .populate({
+            path: "course",
+            match: { status: "Published" },
+            populate: "ratingAndReviews",
+          })
+          .exec()
+      }
         //console.log("Different COURSE", differentCourses)
       // Get top-selling courses across all categories
-      const allCategories = await Category.find()
-        .populate({
-          path: "course",
-          match: { status: "Published" },
-          populate: "ratingAndReviews",
-        })
-        .exec()
-      const allCourses = allCategories.flatMap((category) => category.courses)
       const mostSellingCourses = await Course.find({ status: 'Published' })
       .sort({ "studentsEnrolled.length": -1 }).populate("ratingAndReviews") // Sort by studentsEnrolled array length in descending order
       .exec();

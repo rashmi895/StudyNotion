@@ -15,4 +15,4 @@ const categorySchema = new mongoose.Schema({
     expires: 300, // ⏱ OTP expires in 5 minutes
   },
 })
-module.exports = mongoose.model("Otp", categorySchema); 
+module.exports = mongoose.models.Otp || mongoose.model("Otp", categorySchema); 

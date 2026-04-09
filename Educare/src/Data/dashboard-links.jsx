@@ -1,4 +1,4 @@
-import { ACCOUNT_TYPE } from "../utils/constrains";
+import { ACCOUNT_TYPE } from "../utils/constants";
 export const sidebarLinks = [
   {
     id: 1,
@@ -18,6 +18,13 @@ export const sidebarLinks = [
     name: "My Courses",
     path: "/dashboard/my-courses",
     type: ACCOUNT_TYPE.INSTRUCTOR,
+    icon: "VscVm",
+  },
+  {
+    id: 3,
+    name: "Courses",
+    path: "/dashboard/my-courses",
+    type: ACCOUNT_TYPE.STUDENT,
     icon: "VscVm",
   },
   {
