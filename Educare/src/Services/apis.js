@@ -17,7 +17,7 @@ export const settingsEndpoints = {
 
 export const profileEndpoints = {
   GET_USER_DETAILS_API:"/api/v1/Profile/getAllUser",
-  GET_USER_ENROLLED_COURSES_API:"/api/v1/Profile/enrolledCourses",
+  GET_USER_ENROLLED_COURSES_API:"/api/v1/Profile/getEnrolledCourses",
   //  GET_INSTRUCTOR_DATA_API: BASE_URL + "/profile/instructorDashboard",
 }
 
@@ -48,4 +48,11 @@ export const catalogData = {
 // CATAGORIES API
 export const categories = {
   CATEGORIES_API: "/api/v1/Course/getAllCategories",
+}
+
+// STUDENTS ENDPOINTS
+export const studentEndpoints = {
+  COURSE_PAYMENT_API: "/api/v1/Payment/capturePayment",
+  COURSE_VERIFY_API:  "/api/v1/Payment/verifyPayment",
+  SEND_PAYMENT_SUCCESS_EMAIL_API: "/api/v1/Payment/sendPaymentSuccessEmail",
 }

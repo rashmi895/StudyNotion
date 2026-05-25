@@ -22,7 +22,7 @@ import Instructor from "./Components/Core/Dashboard/Instructor"
 import EnrolledCourses from './Components/Core/Dashboard/EnrolledCourses';
 import AddCourse from './Components/Core/Dashboard/AddCourse';
 import MyCourses from './Components/Core/Dashboard/MyCourses';
-// import CourseDetails from "./Pages/CourseDetails";
+import CourseDetails from "./Pages/CourseDetails";
 import EditCourse from './Components/Core/Dashboard/EditCourse';
 import Catalog from './Pages/Catalog';
 const App = () => {
@@ -39,7 +39,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
           <Route path="catalog/:catalogName" element={<Catalog/>} />
-           {/* <Route path="courses/:courseId" element={<CourseDetails/>}/> */}
+           <Route path="courses/:courseId" element={<CourseDetails/>}/>
          <Route path="signup" element={
               <OpenRoute>
                 <SignUp/>

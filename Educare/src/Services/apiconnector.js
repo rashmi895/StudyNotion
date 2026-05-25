@@ -1,6 +1,8 @@
 import axios from "axios"
 
-export const axiosInstance = axios.create({baseURL: "http://localhost:4000",});
+export const axiosInstance = axios.create({
+    baseURL: import.meta.env.VITE_BASE_URL || "http://localhost:4000",
+});
 
 export const apiConnector = (method, url, bodyData, headers, params) => {
     return axiosInstance({
