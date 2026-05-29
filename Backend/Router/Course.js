@@ -14,6 +14,7 @@ const {createCategory,showAllCategories,categoryPageDetails}=require("../Control
 const { auth, isInstructor } = require("../Middleware/Auth");
 const { createSection,updateSection,deleteSection } = require("../Controller/Section");
 const { createSubSection, updateSubSection, deleteSubSection } = require("../Controller/Sub-Section");
+const { createRating, getAllRating, getAverageRating } = require("../Controller/ReviewsAndRatings");
 
 // Courses API routes 
 router.post("/createCourse",auth, isInstructor,  createCourse);
@@ -39,5 +40,10 @@ router.post("/createCategory",auth, isInstructor, createCategory);
 router.get("/getAllCategories", showAllCategories);
 router.post("/getCategoryPageDetails", categoryPageDetails);
 // router.get("/categoryPageDetails/:id", categoryPageDetails);
+
+// Rating and review routes
+router.post("/createRating", auth, createRating);
+router.get("/getAverageRating", getAverageRating);
+router.get("/getReviews", getAllRating);
 
 module.exports=router;

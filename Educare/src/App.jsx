@@ -15,15 +15,16 @@ import Dashboard from './Pages/Dashboard';
 import MyProfile from './Components/Core/Dashboard/MyProfile';
 import Settings from './Components/Core/Dashboard/Settings';
 import { useNavigate } from "react-router-dom";
-// import MyCourses from "./Components/Core/Dashboard/MyCourses";
+import MyCourses from "./Components/Core/Dashboard/MyCourses";
 import { ACCOUNT_TYPE } from "./utils/constants";
 import { useEffect, useState } from "react";
 import Instructor from "./Components/Core/Dashboard/Instructor"
 import EnrolledCourses from './Components/Core/Dashboard/EnrolledCourses';
 import AddCourse from './Components/Core/Dashboard/AddCourse';
-import MyCourses from './Components/Core/Dashboard/MyCourses';
+// import MyCourses from './Components/Core/Dashboard/MyCourses';
 import CourseDetails from "./Pages/CourseDetails";
 import EditCourse from './Components/Core/Dashboard/EditCourse';
+import ContactPage from './Pages/ContactPage';
 import Catalog from './Pages/Catalog';
 const App = () => {
   
@@ -72,6 +73,12 @@ const App = () => {
  <Route path="about-us" element={
               <OpenRoute>
                 <AboutUs/>
+              </OpenRoute>
+            } /> 
+
+ <Route path="contact" element={
+              <OpenRoute>
+                <ContactPage/>
               </OpenRoute>
             } /> 
 {/* // dashboard Routes */}

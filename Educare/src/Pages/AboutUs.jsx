@@ -5,6 +5,7 @@ import BannerImage2 from "../assets/Images/bannerabout1.jpg"
 import BannerImage3 from "../assets/Images/Bannerabout3.jpg"
 import Quote from '../Components/Core/AboutUsPage/Quote'
 import FoundingStory from "../assets/Images/founding.jpg"
+import Footer from '../Components/Common/Footer'
 const About = () => {
   return (
     <div className=''>
@@ -74,7 +75,7 @@ const About = () => {
         </div>
       </section>  
 
-      
+      <Footer />
     </div>
   )
 }

@@ -4,6 +4,8 @@ const { uploadImageToCloudinary } = require("../utils/imageUploader");
  const CourseProgress = require("../models/CourseProgress");
 const Course = require("../Models/Course");
  const { convertSecondsToDuration } = require("../utils/secToDuration");
+const mailSender = require("../Utils/mailsender");
+const { ContactUsEmail } = require("../Mail/ContactFormResponse");
 
 
 exports.updateProfile = async (req,res) =>{
@@ -239,5 +241,37 @@ exports.getEnrolledCourses = async (req, res) => {
         success: false,
         message: error.message,
       })
+    }
+};
+
+exports.contactUsController = async (req, res) => {
+    try {
+        const { email, firstname, lastname = "", message, phoneNo, countrycode = "" } = req.body;
+
+        if (!email || !firstname || !message || !phoneNo) {
+            return res.status(400).json({
+                success: false,
+                message: "All fields are required",
+            });
+        }
+
+        const fullPhoneNumber = `${countrycode} ${phoneNo}`.trim();
+        await mailSender(
+            email,
+            "Your message was received",
+            ContactUsEmail(email, firstname, lastname, message, fullPhoneNumber)
+        );
+
+        return res.status(200).json({
+            success: true,
+            message: "Message sent successfully",
+        });
+    } catch (error) {
+        console.error("Contact us error:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Something went wrong while sending your message",
+            error: error.message,
+        });
     }
 };

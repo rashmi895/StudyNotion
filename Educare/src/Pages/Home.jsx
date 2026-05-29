@@ -7,6 +7,7 @@ import study from "../assets/Videos/study.mp4";
 import CodeBlocks from '../Components/Core/HomePage/CodeBlocks.jsx';
 import ExploreMore from '../Components/Core/HomePage/ExploreMore.jsx';
 import Navbar from '../Components/Common/Navbar.jsx';
+import Footer from '../Components/Common/Footer.jsx';
 const Home = () => {
   return (
     <div className='flex flex-col items-center'>
@@ -159,6 +160,7 @@ const Home = () => {
                 </div>
             </div>
 </div>
+<Footer />
     </div>
   )
 }

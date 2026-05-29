@@ -21,6 +21,10 @@ export const profileEndpoints = {
   //  GET_INSTRUCTOR_DATA_API: BASE_URL + "/profile/instructorDashboard",
 }
 
+export const contactusEndpoint = {
+  CONTACT_US_API: "/api/v1/Profile/contactUs",
+}
+
 export const courseEndpoints = {
   CREATE_COURSE_API: "/api/v1/Course/createCourse",
   GET_ALL_COURSE_API: "/api/v1/Course/getAllCourses",
@@ -36,6 +40,11 @@ export const courseEndpoints = {
   COURSE_DETAILS_API: "/api/v1/Course/getCourseDetails",
   GET_FULL_COURSE_DETAILS_AUTHENTICATED: "/api/v1/Course/getFullCourseDetails",
   DELETE_COURSE_API: "/api/v1/Course/deleteCourse",
+  CREATE_RATING_API: "/api/v1/Course/createRating",
+}
+
+export const ratingsEndpoints = {
+  REVIEWS_DETAILS_API: "/api/v1/Course/getReviews",
 }
 
 
