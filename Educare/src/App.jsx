@@ -25,6 +25,7 @@ import AddCourse from './Components/Core/Dashboard/AddCourse';
 import CourseDetails from "./Pages/CourseDetails";
 import EditCourse from './Components/Core/Dashboard/EditCourse';
 import ContactPage from './Pages/ContactPage';
+import VideoDetails from './Components/Core/ViewCourse/VideoDetails';
 import Catalog from './Pages/Catalog';
 const App = () => {
   
@@ -114,6 +115,17 @@ const App = () => {
             }
   </Route>
 
+
+   {
+              user?.accountType === ACCOUNT_TYPE.STUDENT && (
+                <>
+                  <Route
+                    path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+                    element={<VideoDetails/>}
+                  />
+                </>
+              )
+            }
 </Routes>
 
       </div>

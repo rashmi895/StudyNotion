@@ -333,8 +333,7 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
     result = response?.data?.data
   } catch (error) {
     console.log("COURSE_FULL_DETAILS_API API ERROR............", error)
-    result = error.response.data
-    // toast.error(error.response.data.message);
+    toast.error(error.response?.data?.message || "Could not load course details")
   }
   toast.dismiss(toastId)
   //   dispatch(setLoading(false));
