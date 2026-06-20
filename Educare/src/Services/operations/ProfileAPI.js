@@ -9,6 +9,7 @@ const { GET_USER_DETAILS_API,
   GET_USER_ENROLLED_COURSES_API,
   GET_INSTRUCTOR_DATA_API ,
   UPDATE_DISPLAY_PICTURE_API,
+  
 } = profileEndpoints;
 
 export function getUserDetails(token, navigate) {

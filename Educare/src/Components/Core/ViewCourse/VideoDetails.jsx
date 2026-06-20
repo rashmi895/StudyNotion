@@ -19,6 +19,8 @@ const VideoDetails = () => {
   const [previewSource, setPreviewSource] = useState("")
   const [videoData, setVideoData] = useState([]);
   const [videoEnded, setVideoEnded] = useState(false);
+    const [playing, setPlaying] = useState(false);
+    const [useNative, setUseNative] = useState(false);
   const [loading, setLoading] = useState(false);
     
   useEffect(() => {
@@ -48,6 +50,14 @@ const VideoDetails = () => {
     }
     setVideoSpecificDetails();
   }, [courseSectionData, courseEntireData, location.pathname])
+
+    useEffect(() => {
+        if (videoData?.videoUrl) {
+            // helpful debug log for verifying the URL in browser console
+            // eslint-disable-next-line no-console
+            console.log('Video URL:', videoData.videoUrl);
+        }
+    }, [videoData]);
   
   const isFirstVideo = () => {
     const currentSectionIndex = courseSectionData.findIndex(
@@ -158,7 +168,7 @@ const VideoDetails = () => {
 
   }
   return (
-    <div className="flex flex-col gap-5 text-white">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-5 text-white">
       {
         !videoData ? (<img
           src={previewSource}
@@ -166,16 +176,62 @@ const VideoDetails = () => {
           className="h-full w-full rounded-md object-cover"
         />)
         : (
-            <div className="relative w-full">
+            <div className="relative aspect-video w-full overflow-hidden rounded-md bg-black">
                 <ReactPlayer
                     ref={playerRef}
                     url={videoData?.videoUrl}
                     controls
+                    playing={playing}
+                    className="absolute left-0 top-0"
                     width="100%"
                     height="100%"
-                    onEnded={() => setVideoEnded(true)}
+                    onEnded={() => {
+                        setVideoEnded(true);
+                        setPlaying(false);
+                    }}
                     light={previewSource}
                 />
+
+                {/* Play overlay for starting playback on user interaction */}
+                {!playing && (
+                    <div className="absolute inset-0 z-20 grid place-items-center">
+                        <button
+                            onClick={() => setPlaying(true)}
+                            className="text-4xl text-white bg-black/40 rounded-full p-4"
+                            aria-label="Play video"
+                        >
+                            ▶
+                        </button>
+                    </div>
+                )}
+
+                {/* Debug: show video URL so you can verify it's correct */}
+                {videoData?.videoUrl && (
+                    <div className="mt-2 text-sm text-gray-300 break-all">
+                        URL: {videoData.videoUrl}
+                        <div className="mt-1">
+                            <button
+                                onClick={() => setUseNative((s) => !s)}
+                                className="text-xs text-yellow-300 underline"
+                            >
+                                {useNative ? 'Hide native player' : 'Try native player'}
+                            </button>
+                        </div>
+                    </div>
+                )}
+
+                {useNative && videoData?.videoUrl && (
+                    <div className="mt-4">
+                        <video
+                            controls
+                            style={{ width: '100%', maxHeight: '70vh' }}
+                            src={videoData.videoUrl}
+                            crossOrigin="anonymous"
+                        >
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                )}
 
                 {videoEnded && (
                     <div
