@@ -8,7 +8,10 @@ import CodeBlocks from '../Components/Core/HomePage/CodeBlocks.jsx';
 import ExploreMore from '../Components/Core/HomePage/ExploreMore.jsx';
 import Navbar from '../Components/Common/Navbar.jsx';
 import Footer from '../Components/Common/Footer.jsx';
+import { FaRobot } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
+    const navigate = useNavigate();
   return (
     <div className='flex flex-col items-center'>
       
@@ -159,6 +162,17 @@ const Home = () => {
 
                 </div>
             </div>
+</div>
+<div
+  className="fixed bottom-6 left-6
+             bg-yellow-400
+             w-16 h-16
+             rounded-full
+             flex items-center justify-center
+             cursor-pointer shadow-lg"
+  onClick={() => navigate("/ai-chat")}
+>
+  <FaRobot size={28} />
 </div>
 <Footer />
     </div>

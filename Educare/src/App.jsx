@@ -27,6 +27,7 @@ import EditCourse from './Components/Core/Dashboard/EditCourse';
 import ContactPage from './Pages/ContactPage';
 import VideoDetails from './Components/Core/ViewCourse/VideoDetails';
 import Catalog from './Pages/Catalog';
+import AIChatPage from "./Pages/chatbotPage";
 const App = () => {
   
   const dispatch = useDispatch();
@@ -126,9 +127,14 @@ const App = () => {
                 </>
               )
             }
+             <Route
+  path="/ai-chat"
+  element={<AIChatPage />}
+/>
 </Routes>
 
       </div>
+     
     </div>
   )
 }

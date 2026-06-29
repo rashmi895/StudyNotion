@@ -1,6 +1,6 @@
 const User = require("../Models/User");
 const Profile = require("../Models/Profile");
-const { uploadImageToCloudinary } = require("../utils/imageUploader");
+const { uploadImageToCloudinary } = require("../Utils/imageUploader");
  const CourseProgress = require("../models/CourseProgress");
 const Course = require("../Models/Course");
  const { convertSecondsToDuration } = require("../utils/secToDuration");

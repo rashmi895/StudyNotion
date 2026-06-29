@@ -11,11 +11,13 @@ const{cloudinaryConnect}=require("./config/cloudinary");
 const fileUpload=require("express-fileupload");
 
 
+
 // ALL ROUTES IMPORT
 const UserRoutes=require("./Router/User");
 const ProfileRoutes=require("./Router/Profile");
 const PaymentRoutes=require("./Router/Payment");
 const CourseRoutes=require("./Router/Course");
+const chatRoutes = require("./Router/ChatRoutes");
 
 const PORT = process.env.PORT || 4000;
 
@@ -48,6 +50,7 @@ app.use("/api/v1/User",UserRoutes);
 app.use("/api/v1/Profile",ProfileRoutes);
 app.use("/api/v1/Payment",PaymentRoutes);
 app.use("/api/v1/Course",CourseRoutes);
+app.use("/api/v1/ai", chatRoutes);
 
 
 app.listen(PORT, () => {
