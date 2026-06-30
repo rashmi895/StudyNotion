@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 const mongoose = require("mongoose");
-const { instance } = require("../config/razorpay");
+const { instance } = require("../config/Razorpay");
 const Course = require("../Models/Course");
 const CourseProgress = require("../Models/CourseProgress");
 const User = require("../Models/User");
