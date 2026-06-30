@@ -1,9 +1,9 @@
 const crypto = require("crypto");
 const mongoose = require("mongoose");
 const { instance } = require("../config/razorpay");
-const Course = require("../models/Course");
-const CourseProgress = require("../models/CourseProgress");
-const User = require("../models/User");
+const Course = require("../Models/Course");
+const CourseProgress = require("../Models/CourseProgress");
+const User = require("../Models/User");
 const mailSender = require("../utils/mailSender");
 const { courseEnrollmentEmail } = require("../Mail/CourseEnrollrement");
 const { paymentSuccessEmail } = require("../Mail/PaymentSuccessful");

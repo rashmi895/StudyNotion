@@ -1,7 +1,7 @@
 const User = require("../Models/User");
 const Profile = require("../Models/Profile");
 const { uploadImageToCloudinary } = require("../Utils/imageUploader");
- const CourseProgress = require("../models/CourseProgress");
+ const CourseProgress = require("../Models/CourseProgress");
 const Course = require("../Models/Course");
  const { convertSecondsToDuration } = require("../utils/secToDuration");
 const mailSender = require("../Utils/mailsender");
