@@ -3,7 +3,7 @@ const Profile = require("../Models/Profile");
 const { uploadImageToCloudinary } = require("../Utils/imageUploader");
  const CourseProgress = require("../Models/CourseProgress");
 const Course = require("../Models/Course");
- const { convertSecondsToDuration } = require("../utils/secToDuration");
+ const { convertSecondsToDuration } = require("../Utils/secToDuration");
 const mailSender = require("../Utils/mailsender");
 const { ContactUsEmail } = require("../Mail/ContactFormResponse");
 
