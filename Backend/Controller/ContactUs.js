@@ -1,5 +1,5 @@
 const { contactUsEmail } = require("../Mail/ContactFormResponse");
-const mailSender = require("../utils/mailSender")
+const mailSender = require("../Utils/mailsender")
 
 exports.contactUsController = async (req, res) => {
   // fetch all the details from the form 
