@@ -3,7 +3,7 @@ import React from "react"
 import { VscSignOut } from "react-icons/vsc"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import {sidebarLinks} from "../../../data/dashboard-links"
+import {sidebarLinks} from "../../../Data/dashboard-links"
 import { logout } from '../../../Services/operations/authAPI'
 import ConfirmationModal from '../../Common/ConfirmationModal'
 import SidebarLink from './SidebarLink'
