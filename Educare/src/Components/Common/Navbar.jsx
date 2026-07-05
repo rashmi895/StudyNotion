@@ -5,7 +5,7 @@ import {NavbarLinks} from "../../Data/NavbarLinks"
 import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import {AiOutlineShoppingCart} from "react-icons/ai"
-import ProfileDropDown from '../core/Auth/ProfileDropDown'
+import ProfileDropDown from '../Core/Auth/ProfileDropDown'
 import { apiConnector } from '../../Services/apiconnector'
 import { categories } from '../../Services/apis'
 import { useState } from 'react'
