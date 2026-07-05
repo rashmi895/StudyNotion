@@ -15,7 +15,7 @@ import { BiVideo } from 'react-icons/bi';
 import { MdOutlineArrowForwardIos } from 'react-icons/md';
 import CourseDetailsCard from '../Components/Core/Course/CourseDetailsCard.jsx';
 import { toast } from 'react-hot-toast';
-// import Footer from '../components/common/Footer.js'
+// import Footer from '../Components/Common/Footer.jsx'
 const CourseDetails = () => {
     const {token} = useSelector((state)=> state.auth)
     const {user} = useSelector((state) => state.profile )

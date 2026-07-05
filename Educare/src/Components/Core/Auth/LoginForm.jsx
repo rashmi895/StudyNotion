@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 import React from "react"
 import {login} from "../../../Services/operations/authAPI"
 import { ACCOUNT_TYPE } from "../../../utils/constants"
-import Tab from "../../common/Tab"
+import Tab from "../../Common/Tab"
 function LoginForm() {
   const navigate = useNavigate()
   const dispatch = useDispatch()

@@ -6,7 +6,7 @@ import { updateCompletedLectures } from '../../../slices/viewCourseSlice';
 import ReactPlayer from 'react-player'
 
 import {AiFillPlayCircle} from "react-icons/ai"
-import IconBtn from '../../common/IconBtn';
+import IconBtn from '../../Common/IconBtn';
 
 const VideoDetails = () => {
     const {courseId, sectionId, subSectionId} = useParams();
