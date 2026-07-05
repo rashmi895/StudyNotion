@@ -1,4 +1,4 @@
-import ChatBot from "../Components/ChatBot";
+import ChatBot from "../Components/chatbot";
 import React from "react";
 function AIChatPage() {
   return (
