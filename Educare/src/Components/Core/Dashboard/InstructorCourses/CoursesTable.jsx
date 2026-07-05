@@ -11,11 +11,11 @@ import { HiClock } from "react-icons/hi"
 import { RiDeleteBin6Line } from "react-icons/ri"
 import { useNavigate } from "react-router-dom"
 import convertSecondsToDuration from '../../../../utils/secToDurationFrontend'
-import { formatDate } from "../../../../services/formatDate"
+import { formatDate } from "../../../../Services/formatDate"
 import {
   deleteCourse,
   fetchInstructorCourses,
-} from "../../../../services/operations/courseDetailsAPI"
+} from "../../../../Services/operations/courseDetailsAPI"
 import { COURSE_STATUS } from "../../../../utils/constants"
 import ConfirmationModal from "../../../common/ConfirmationModal"
 

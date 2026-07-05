@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { buyCourse } from '../Services/operations/studentsFeatures.API.js';
-import { fetchCourseDetails } from '../services/operations/courseDetailsAPI';
+import { fetchCourseDetails } from '../Services/operations/courseDetailsAPI';
 import { setCourse } from '../slices/courseSlice';
 import GetAvgRating from '../utils/avgRating';
 import Error from "./Error"
 import ConfirmationModal from "../Components/Common/ConfirmationModal.jsx"
 import RatingStars from "../Components/Common/RatingsStars.jsx"
-import { formatDate } from '../services/formatDate';
+import { formatDate } from '../Services/formatDate';
 import { IoIosInformationCircleOutline } from 'react-icons/io';
 import { BsGlobe } from 'react-icons/bs';
 import { BiVideo } from 'react-icons/bi';

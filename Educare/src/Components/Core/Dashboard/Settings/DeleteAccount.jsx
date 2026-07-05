@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import React from "react"
 import IconBtn from "../../../Common/IconBtn"
-import { deleteProfile } from "../../../../services/operations/SettingsAPI"
+import { deleteProfile } from "../../../../Services/operations/SettingsAPI"
 
 export default function DeleteAccount() {
   const { token } = useSelector((state) => state.auth)

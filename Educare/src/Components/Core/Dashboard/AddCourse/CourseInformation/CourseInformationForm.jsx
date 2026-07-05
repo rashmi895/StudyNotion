@@ -7,7 +7,7 @@ import { HiOutlineCurrencyRupee } from "react-icons/hi"
 import { MdNavigateNext } from "react-icons/md"
 import {
     addCourseDetails, editCourseDetails, fetchCourseCategories
-} from '../../../../../services/operations/courseDetailsAPI'
+} from '../../../../../Services/operations/courseDetailsAPI'
 import { setCourse, setStep } from "../../../../../slices/courseSlice"
 import { COURSE_STATUS } from "../../../../../utils/constants"
 import IconBtn from "../../../../common/IconBtn"
